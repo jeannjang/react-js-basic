@@ -19,30 +19,19 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
   <script type="text/babel">
-    const root = document.getElementById("root");
-    const Title = () => (
-      <h3
-        id="title"
-        style={{ color: "coral" }}
-        onMouseEnter={() => console.log("hovered")}
-      >
-        This is a span
-      </h3>
-    );
+    function App() {
+      const [counter, setCounter] = React.useState(0);
 
-    const Button = () => (
-      <button id="easy-btn" onClick={() => console.log("clicked")}>
-        click me
-      </button>
-    );
-
-    const Container = () => (
-      <div>
-        <Title />
-        <Button />
-        <Button />
-      </div>
-    );
-    ReactDOM.render(<Container />, root);
+      function handleClick() {
+        setCounter((current) => current + 1);
+      }
+      return (
+        <div>
+          <h3>Total clicks: {counter}</h3>
+          <button onClick={handleClick}>click me</button>
+        </div>
+      );
+    }
+    ReactDOM.render(<App />, document.getElementById("root"));
   </script>
 </html>
