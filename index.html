@@ -16,23 +16,33 @@
     src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"
     crossorigin
   ></script>
-  <script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
     const root = document.getElementById("root");
-    const h3 = React.createElement(
-      "h3",
-      {
-        id: "easy-span",
-        style: { color: "coral" },
-        onMouseEnter: () => console.log("hovered"),
-      },
-      "This is a span"
+    const Title = () => (
+      <h3
+        id="title"
+        style={{ color: "coral" }}
+        onMouseEnter={() => console.log("hovered")}
+      >
+        This is a span
+      </h3>
     );
-    const btn = React.createElement(
-      "button",
-      { id: "easy-btn", onClick: () => console.log("clicked") },
-      "click me"
+
+    const Button = () => (
+      <button id="easy-btn" onClick={() => console.log("clicked")}>
+        click me
+      </button>
     );
-    const container = React.createElement("div", null, [h3, btn]);
-    ReactDOM.render(container, root);
+
+    const Container = () => (
+      <div>
+        <Title />
+        <Button />
+        <Button />
+      </div>
+    );
+    ReactDOM.render(<Container />, root);
   </script>
 </html>
