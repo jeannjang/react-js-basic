@@ -9,29 +9,52 @@
     <div id="root"></div>
   </body>
   <script
-    src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"
+    src="https://unpkg.com/react@18/umd/react.development.js"
     crossorigin
   ></script>
   <script
-    src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"
+    src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
     crossorigin
   ></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.8.1/prop-types.min.js"></script>
 
   <script type="text/babel">
-    function App() {
-      const [counter, setCounter] = React.useState(0);
+    const { createRoot } = ReactDOM;
 
-      function handleClick() {
-        setCounter((current) => current + 1);
-      }
+    function Btn({ text, sizingfont: sizingfont = 10 }) {
+      return (
+        <button
+          style={{
+            backgroundColor: "lightcoral",
+            color: "white",
+            padding: "10px 20px",
+            borderRadius: "5px",
+            border: 0,
+            fontSize: sizingfont,
+          }}
+        >
+          {text}
+        </button>
+      );
+    }
+
+    Btn.propTypes = {
+      text: PropTypes.string.isRequired,
+      sizingfont: PropTypes.number,
+    };
+
+    function App() {
       return (
         <div>
-          <h3>Total clicks: {counter}</h3>
-          <button onClick={handleClick}>click me</button>
+          <Btn text="Save Changes" sizingfont={20} />
+          <Btn text="Cancel" />
         </div>
       );
     }
-    ReactDOM.render(<App />, document.getElementById("root"));
+
+    const rootElement = document.getElementById("root");
+    const root = createRoot(rootElement);
+    root.render(<App />);
   </script>
 </html>
